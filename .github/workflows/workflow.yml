@@ -75,7 +75,7 @@ jobs:
     steps:
     # Step 1: Log in to Azure using OIDC
     - name: 'Login to Azure using OIDC'
-      uses: azure/login@v1.6.3
+      uses: azure/login@v1  # Use the latest stable version of azure/login
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}  # Your client ID
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}  # Your tenant ID
@@ -103,6 +103,6 @@ jobs:
 
     # Step 6: Always stop the Azure VM (turn it off)
     - name: 'Always stop Azure VM'
-      if: always()  
+      if: always()  # Ensure the VM is stopped regardless of success or failure
       run: |
         az vm deallocate --resource-group auto_vm_on_off_central_us --name action-vm-on-off-central-us
