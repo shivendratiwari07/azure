@@ -82,9 +82,21 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     # Step 2: Start the Azure VM (turn it on)
-    - name: 'Start Azure VM'
+    - name: 'Start Azure VM and get details'
       run: |
         az vm start --resource-group auto_vm_on_off_central_us --name action-vm-on-off-central-us
+        echo "VM started"
+        
+        # Get VM Name and IP
+        VM_NAME="action-vm-on-off-central-us"
+        VM_IP=$(az vm show --resource-group auto_vm_on_off_central_us --name $VM_NAME --show-details --query publicIps -o tsv)
+        
+        # Print VM Name and IP
+        echo "VM Name: $VM_NAME"
+        echo "VM Public IP: $VM_IP"
+        
+        echo "Sleeping for 2 minutes..."
+        sleep 120  # Sleep for 2 minutes
 
     # Step 3: Check out the code
     - name: 'Check out code'
@@ -105,3 +117,5 @@ jobs:
       if: always()  # Ensure the VM is stopped regardless of success or failure
       run: |
         az vm deallocate --resource-group auto_vm_on_off_central_us --name action-vm-on-off-central-us
+
+        echo "VM stoped"
