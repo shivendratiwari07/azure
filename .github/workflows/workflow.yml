@@ -40,9 +40,6 @@ jobs:
         echo "VM Name: $VM_NAME"
         echo "VM Public IP: $VM_IP"
         
-        echo "Sleeping for 2 minutes..."
-        sleep 1 
-
     
     - name: 'Check out code'
       uses: actions/checkout@v2
