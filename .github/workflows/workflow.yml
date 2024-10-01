@@ -73,14 +73,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Log in to Azure using OIDC
-    - name: 'Login to Azure using OIDC'
-      uses: azure/login@v1  # Use the latest stable version of azure/login
+    # Step 1: Log in to Azure using OIDC (no need to specify auth-type)
+    - name: 'Login to Azure'
+      uses: azure/login@v1  # Use the latest version that supports OIDC
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}  # Your client ID
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}  # Your tenant ID
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  # Your subscription ID
-        auth-type: 'oidc'  # Use OIDC authentication
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     # Step 2: Start the Azure VM (turn it on)
     - name: 'Start Azure VM'
