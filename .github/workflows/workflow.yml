@@ -75,7 +75,7 @@ jobs:
     steps:
     # Step 1: Log in to Azure using OIDC
     - name: 'Login to Azure using OIDC'
-      uses: azure/login@v1
+      uses: azure/login@v1.6.3
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}  # Your client ID
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}  # Your tenant ID
