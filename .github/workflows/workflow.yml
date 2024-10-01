@@ -100,7 +100,7 @@ jobs:
       run: |
         pytest
 
-    # Step 6: Always stop the Azure VM (turn it off)
+    ## Step 6: Always stop the Azure VM (turn it off)
     - name: 'Always stop Azure VM'
       if: always()  # Ensure the VM is stopped regardless of success or failure
       run: |
