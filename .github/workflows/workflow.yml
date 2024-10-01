@@ -32,22 +32,13 @@ jobs:
         az vm start --resource-group auto_vm_on_off_central_us --name action-vm-on-off-central-us
         echo "VM started"
         
-        # Get VM Name and IP
-        VM_NAME="action-vm-on-off-central-us"
+        # Get VM  IP
+        
         VM_IP=$(az vm show --resource-group auto_vm_on_off_central_us --name $VM_NAME --show-details --query publicIps -o tsv)
         
-        # Print VM Name and IP
-        echo "VM Name: $VM_NAME"
-        echo "VM Public IP: $VM_IP"
+        # Print VM  IP
         
-    
-    - name: 'Check out code'
-      uses: actions/checkout@v2
-
-    
-    ## - name: Install dependencies
-    #   run: |
-    #     python -m pip install --upgrade pip
+        echo "VM Public IP: $VM_IP"
 
     
     - name: 'Always stop Azure VM'
